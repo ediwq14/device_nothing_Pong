@@ -37,7 +37,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@7.0-impl \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.audio.service \
-    android.hardware.bluetooth.audio@2.1-impl \
     android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.3-impl \
     audio.bluetooth.default \
@@ -249,6 +248,9 @@ PRODUCT_PACKAGES += \
     ueventd.nt.rc \
     ueventd.qcom.rc
 
+# Kernel
+PRODUCT_ENABLE_UFFD_GC := true
+
 # Keymint
 PRODUCT_PACKAGES += \
     android.hardware.hardware_keystore.xml
@@ -423,7 +425,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/google/interfaces \
-    hardware/google/pixel \
+    hardware/google/pixel/pixelstats \
+    hardware/google/pixel/power-libperfmgr \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client 
 
