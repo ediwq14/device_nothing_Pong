@@ -535,7 +535,7 @@ PRODUCT_PACKAGES += \
 
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/nothing/Pong/Pong-vendor.mk)
-
+$(call inherit-product-if-exists, vendor/nothing/camera/nothing-camera.mk)
 # Remove unwanted packages
 ifeq ($(TARGET_USE_REMOVEPACKAGE),true)
 PRODUCT_PACKAGES += \

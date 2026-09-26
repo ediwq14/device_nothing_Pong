@@ -89,8 +89,6 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libcodec2_shim.so'),
     ('vendor/lib64/libqcrilNr.so', 'vendor/lib64/libril-db.so'): blob_fixup()
         .binary_regex_replace(rb'persist\.vendor\.radio\.poweron_opt', b'persist.vendor.radio.poweron_ign'),
-    ('vendor/lib64/libntcamallocator.so', 'vendor/lib64/vendor.noth.hardware.camera-service-impl.so'): blob_fixup()
-        .add_needed('libui_shim.so'),
     'system_ext/lib64/vendor.qti.hardware.qccsyshal@1.2-halimpl.so': blob_fixup()
         .replace_needed('libprotobuf-cpp-full.so', 'libprotobuf-cpp-full-21.7.so'),
     (
