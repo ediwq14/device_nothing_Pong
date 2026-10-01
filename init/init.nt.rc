@@ -56,22 +56,8 @@ on post-fs-data
     chmod 0444 /data/vendor/camera/ois_caldata_wide_persist.bin
     chown cameraserver audio /data/vendor/camera/ois_caldata_wide_persist.bin
 
-    # Enable WLAN SSR
-    write /sys/kernel/cnss/recovery 1
-
-    chown system system /sys/class/kgsl/kgsl-3d0/max_gpuclk
-    chmod 0660 /sys/class/kgsl/kgsl-3d0/max_gpuclk
-    chown system system /sys/class/kgsl/kgsl-3d0/devfreq/cur_freq
-    chmod 0440 /sys/class/kgsl/kgsl-3d0/devfreq/cur_freq
-
-    # Thermal limiter: let DeviceExtras cap the CPU clusters. cpuX/cpufreq is a
-    # symlink to cpufreq/policyN, so the per-policy node covers every core.
-    chown system system /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
-    chmod 0660 /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpufreq/policy4/scaling_max_freq
-    chmod 0660 /sys/devices/system/cpu/cpufreq/policy4/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpufreq/policy7/scaling_max_freq
-    chmod 0660 /sys/devices/system/cpu/cpufreq/policy7/scaling_max_freq
+    # Fingerprint
+    mkdir /data/vendor/goodix 0770 system system
 
 on property:sys.boot_completed=1
     chown system system /sys/class/qcom-battery/wireless_boost_en
