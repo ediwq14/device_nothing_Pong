@@ -92,6 +92,9 @@ PRODUCT_PACKAGES += \
     android.hardware.boot-service.qti \
     android.hardware.boot-service.qti.recovery
 
+# Bluetooth
+$(call soong_config_set_bool,qssi_bluetooth,enable_delay_in_ms,true)
+
 # Camera
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.system_ext.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries.txt \
@@ -139,6 +142,9 @@ PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.usap_pool_size_max?=5 \
     dalvik.vm.usap_refill_threshold?=1 \
     dalvik.vm.usap_pool_refill_delay_ms?=3000
+
+# Data
+SOONG_CONFIG_rmnetctl_old_rmnet_data := true
 
 # DebugFS
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
@@ -247,7 +253,14 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc
 
 # Kernel
-PRODUCT_ENABLE_UFFD_GC := true
+KERNEL_PREBUILT_DIR := device/nothing/phone2-kernel
+TARGET_KERNEL_PREBUILT_TECHPACKS := true
+TARGET_KERNEL_VERSION := 6.6
+TARGET_USES_PREBUILT_KERNEL := true
+
+# Keymaster
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml
 
 # Keymint
 PRODUCT_PACKAGES += \
