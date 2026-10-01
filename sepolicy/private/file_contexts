@@ -1,5 +1,1 @@
-# Charging control
-/system/bin/nt-charging-control_recovery						u:object_r:nt_chg_recovery_exec:s0
-
-# Sltntc
-/system_ext/bin/sltntc      u:object_r:sltntc_exec:s0
+/system_ext/bin/qspmsvc    u:object_r:vendor_qspmsvc_exec:s0
