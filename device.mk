@@ -384,16 +384,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml
 
-# Shipping API
-BOARD_SHIPPING_API_LEVEL := 32
-PRODUCT_SHIPPING_API_LEVEL := $(BOARD_SHIPPING_API_LEVEL)
-
-# Sku properties
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sku/build_CAPE.prop:$(TARGET_COPY_OUT_ODM)/etc/build_CAPE.prop \
-    $(LOCAL_PATH)/sku/build_EEA.prop:$(TARGET_COPY_OUT_ODM)/etc/build_EEA.prop \
-    $(LOCAL_PATH)/sku/build_IND.prop:$(TARGET_COPY_OUT_ODM)/etc/build_IND.prop \
-    $(LOCAL_PATH)/sku/build_ROW.prop:$(TARGET_COPY_OUT_ODM)/etc/build_ROW.prop
+PRODUCT_PACKAGES += \
+    android.hardware.sensors-service.phone2-multihal \
+    sensors.nothing
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
