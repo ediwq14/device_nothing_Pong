@@ -125,7 +125,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.usap_pool_refill_delay_ms?=3000
 
 # Data
-SOONG_CONFIG_rmnetctl_old_rmnet_data := true
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/data/dsi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/dsi_config.xml
 
 # DebugFS
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
