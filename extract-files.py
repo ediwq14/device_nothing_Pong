@@ -19,6 +19,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
+    "device/nothing/phone2",
     "vendor/qcom/common/vendor/display",
     "vendor/qcom/common/vendor/perf",
     "vendor/qcom/common/vendor/qseecomd",
@@ -97,32 +98,25 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libbase_shim.so'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
-    'vendor/lib64/libmorpho_video_stabilizer.so': blob_fixup()
-        .add_needed('libutils.so'),
-    'vendor/lib64/libqcodec2_core.so': blob_fixup()
-        .add_needed('libcodec2_shim.so'),
-    ('vendor/lib64/libqcrilNr.so', 'vendor/lib64/libril-db.so'): blob_fixup()
-        .binary_regex_replace(rb'persist\.vendor\.radio\.poweron_opt', b'persist.vendor.radio.poweron_ign'),
-    ('vendor/lib64/libntcamallocator.so', 'vendor/lib64/vendor.noth.hardware.camera-service-impl.so'): blob_fixup()
+    'vendor/lib64/libntcamallocator.so': blob_fixup()
         .add_needed('libui_shim.so'),
-    'system_ext/lib64/vendor.qti.hardware.qccsyshal@1.2-halimpl.so': blob_fixup()
-        .replace_needed('libprotobuf-cpp-full.so', 'libprotobuf-cpp-full-21.7.so'),
+    'vendor/lib64/vendor.noth.hardware.camera-service-impl.so': blob_fixup()
+        .add_needed('libui_shim.so')
+        .add_needed('libntcam_shim.so')
+        .binary_regex_replace(
+            b'_ZN7android19GraphicBufferMapper12importBufferEPK13native_handlejjjimjPS3_',
+            b'_ZN7android19GraphicBufferMapper12importBuffeREPK13native_handlejjjimjPS3_',
+        ),
+    'vendor/etc/init/vendor.noth.hardware.camera-service.rc': (
+        blob_fixup().regex_replace(r'\bNtCamAlgoCapacity\b', 'CameraServiceCapacity')
+    ),
     (
-        'vendor/bin/hw/vendor.qti.camera.provider@2.7-service_64',
-        'vendor/lib64/camx.device@3.4-ext-impl.so',
-        'vendor/lib64/camx.device@3.5-ext-impl.so',
-        'vendor/lib64/camx.device@3.6-ext-impl.so',
-        'vendor/lib64/camx.provider@2.4-external.so',
-        'vendor/lib64/camx.provider@2.4-impl.so',
-        'vendor/lib64/camx.provider@2.4-legacy.so',
-        'vendor/lib64/camx.provider@2.5-external.so',
-        'vendor/lib64/camx.provider@2.5-legacy.so',
-        'vendor/lib64/camx.provider@2.6-legacy.so',
-        'vendor/lib64/camx.provider@2.7-legacy.so',
-        'vendor/lib64/libdpps.so',
-        'vendor/lib64/libsnapdragoncolor-manager.so',
-    ): blob_fixup()
-        .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
+        'vendor/lib64/libntofflinepostproc.so',
+        'vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so',
+    ): blob_fixup().replace_needed(
+        'vendor.qti.hardware.camera.postproc@1.0.so',
+        'vendor.qti.hardware.camera.postproc@1.0-nothing.so',
+    ),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
