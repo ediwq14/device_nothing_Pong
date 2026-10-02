@@ -83,8 +83,11 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Boot control
 PRODUCT_PACKAGES += \
-    android.hardware.boot-service.qti \
-    android.hardware.boot-service.qti.recovery
+    android.hardware.biometrics.fingerprint-service.nothing
+
+$(call soong_config_set,surfaceflinger,udfps_lib,//$(DEVICE_PATH):libudfps_extension.nothing)
+
+TARGET_USES_FOD_ZPOS := true
 
 # Camera
 PRODUCT_COPY_FILES += \
