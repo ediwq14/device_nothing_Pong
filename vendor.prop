@@ -74,6 +74,7 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
 # Gatekeeper
 vendor.gatekeeper.disable_spu=true
+vendor.gatekeeper.is_security_level_spu=0
 
 # Graphics
 debug.sf.auto_latch_unsignaled=1
