@@ -265,40 +265,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
-$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/qcom-battery/charging_en)
-
-# Logging
- SPAMMY_LOG_TAGS := \
-    Diag_Lib \
-    KernelSU \
-    SDM \
-    AGM \
-    AHAL \
-    CamX \
-    minksocket
-
-ifneq ($(TARGET_BUILD_VARIANT),eng)
-PRODUCT_VENDOR_PROPERTIES += \
-    $(foreach tag,$(SPAMMY_LOG_TAGS),log.tag.$(tag)=S)
-endif
-
-# Media
-PRODUCT_COPY_FILES += \
-    $(AUDIO_HAL_DIR)/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
-    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.base-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm64.policy \
-    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/media_codecs_cape_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_cape_vendor.xml 
-
-TARGET_SUPPORTS_OMX_SERVICE := false
-
-PRODUCT_PACKAGES += \
-    libpalclient
-
-# msm_irqbalance
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+# Manifests
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(DEVICE_PATH)/configs/vintf/phone2_vendor_framework_compatibility_matrix.xml
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest_cape.xml
 
 # Media
 PRODUCT_COPY_FILES += \
