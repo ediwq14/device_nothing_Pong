@@ -198,6 +198,12 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 $(call soong_config_set,surfaceflinger,udfps_lib,//$(LOCAL_PATH):libudfps_extension.nothing)
 
+PRODUCT_PACKAGES += \
+    libgnsspps \
+    libloc_base_util \
+    libloc_socket \
+    libsynergy_loc_api
+
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.qti \

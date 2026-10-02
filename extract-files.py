@@ -31,6 +31,8 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
 
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
+    'libgrpc++_unsecure': lib_fixup_prebuilt_suffix,
+    'libloc_api_v02': lib_fixup_prebuilt_suffix,
     (
         'com.qualcomm.qti.dpm.api@1.0',
         'com.qualcomm.qti.imscmservice@*',
@@ -115,6 +117,8 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.qspmhal-V1-ndk',
     ): lib_fixup_vendor_suffix,
     (
+        'libloc_socket',
+        'libsynergy_loc_api',
         'libthermalclient',
         'vendor.qti.memory.pasrmanager-V1-ndk',
         'vendor.qti.snapdragonServices-V2-ndk',
