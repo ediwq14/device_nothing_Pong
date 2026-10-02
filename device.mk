@@ -297,8 +297,8 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc-service.nxp \
-    com.android.nfc_extras \
+    android.hardware.nfc2-service.nxp \
+    NfcNci \
     Tag
 
 PRODUCT_COPY_FILES += \

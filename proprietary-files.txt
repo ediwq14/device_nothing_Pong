@@ -1167,11 +1167,15 @@ vendor/etc/telephony_packages.xml
 vendor/lib64/libqmi_client_qmux.so
 
 # NFC
+system/etc/permissions/com.nxp.nfc.xml
+system/framework/com.nxp.nfc.jar
+vendor/etc/init/init.Pong.nfc.rc
+vendor/etc/init/init.Pong.se.rc
+vendor/etc/permissions/com.nxp.nfc.xml
 vendor/etc/libnfc-nci.conf
 vendor/etc/libnfc-nxp.conf
-
-# NFC firmware
 vendor/lib64/libpn560_fw.so
+vendor/libnfc-nxp_RF.conf
 
 # Peripheral manager
 vendor/bin/pm-proxy
